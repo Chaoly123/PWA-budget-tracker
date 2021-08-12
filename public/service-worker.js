@@ -1,6 +1,6 @@
 // Your data needs a place to live when there is no Internet connection. That's what the cache is for. There is the general cache for images and such, and a data cache for data-specific stuff. I would just follow the naming conventions you see here. Note the versioning on each cache name. This is important.
-const CACHE_NAME = "my-site-cache-v1";
-const DATA_CACHE_NAME = "data-cache-v1";
+const CACHE_NAME = "my-budget-cache-v1";
+const DATA_CACHE_NAME = "my-budget-data-cache-v1";
 
 // We need to provide an array of all urls that our PWA should cache. In other words, we're telling the PWA to be prepared to use the service worker anytime the browser tries to hit any of these routes. In a large web app there could be lots of entries here.
 const urlsToCache = [
