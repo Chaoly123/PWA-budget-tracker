@@ -1,10 +1,15 @@
 {
-  "short_name": "Demo",
-  "name": "Web App Manifest Demo",
+  "short_name": "Budget Track",
+  "name": "Budget-Track",
   "icons": [
     {
-      "src": "/icons/icons-192.png",
+      "src": "/icons/icons-192x192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icons-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
