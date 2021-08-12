@@ -11,13 +11,13 @@ let db;
 // Tell indexedDb to open (or create) whatever database you want to work with
 // I'd recommend naming the database something like "budget" and the object store 
 // something like "pending" or "tba"
-const request = indexedDB.open("<your db name here>", 1);
+const request = indexedDB.open("budget", 1);
 
 // Set up your object store
 // Think of an object store as a table inside your database
 request.onupgradeneeded = ({ target }) => {
   let db = target.result;
-  db.createObjectStore("<object store name here>", { autoIncrement: true });
+  db.createObjectStore("tracking", { autoIncrement: true });
 };
 
 // Leave this code as-is
@@ -32,20 +32,20 @@ request.onsuccess = ({ target }) => {
 
 // Simple error handler. Leave as-is
 request.onerror = function(event) {
-  console.log("Woops! " + event.target.errorCode);
+  console.log("BRUHHH! " + event.target.errorCode);
 };
 
 // This function is called when it's time to save data to the indexedDb
 function saveRecord(record) {
-  const transaction = db.transaction(["<object store name here>"], "readwrite");
-  const store = transaction.objectStore("<object store name here>");
+  const transaction = db.transaction(["tracking"], "readwrite");
+  const store = transaction.objectStore("tracking");
   store.add(record);
 }
 
 // This function runs when we detect that the internet connection is working again. It sends a post request to the server with all the saved data so that the data can be synced with the server, and then it wipes out the existing indexedDb. You can keep as-is, unless you want to change the name of the fetch route.
 function checkDatabase() {
-  const transaction = db.transaction(["<object store name here>"], "readwrite");
-  const store = transaction.objectStore("<object store name here>");
+  const transaction = db.transaction(["tracking"], "readwrite");
+  const store = transaction.objectStore("tracking");
   const getAll = store.getAll();
 
   getAll.onsuccess = function() {
@@ -63,8 +63,8 @@ function checkDatabase() {
       })
       .then(() => {
         // delete records if successful
-        const transaction = db.transaction(["<object store name here>"], "readwrite");
-        const store = transaction.objectStore("<object store name here>");
+        const transaction = db.transaction(["tracking"], "readwrite");
+        const store = transaction.objectStore("tracking");
         store.clear();
       });
     }
